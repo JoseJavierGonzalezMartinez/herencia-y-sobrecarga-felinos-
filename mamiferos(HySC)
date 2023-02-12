@@ -1,0 +1,144 @@
+#include<iostream>
+#include<string>
+#include<sstream>
+using namespace std;
+
+class mamifero{
+    private:
+        string dieta;
+        int Anacimiento;
+        string Lnacimiento;
+        string raza;
+    public:
+        mamifero(string diet,int anac,string lnac,string raz);
+        void imprimeDieta();
+        void imprimenac();
+        void imprimeRaza();
+};
+
+mamifero::mamifero(string diet,int anac,string lnac,string raz){
+    dieta=diet;
+    Anacimiento=anac;
+    Lnacimiento=lnac;
+    raza=raz;
+}
+
+class felino:public mamifero{
+    private:
+        string NombreCirco;
+    public:
+        felino(string diet,int anac,string lnac, string raz, string ncirco);
+        void CambiaCirco();
+};
+
+felino::felino(string diet,int anac,string lnac, string raz, string ncirco):mamifero(diet,anac,lnac,raz){
+ NombreCirco=ncirco;
+}
+class gatodomestico:public felino{
+    private:
+            string Nombredue;
+    public:
+        gatodomestico(string diet,int anac,string lnac,string raz,string ncirco,string ndue);
+        void CambiaNombre();
+
+};
+
+gatodomestico::gatodomestico(string diet,int anac,string lnac,string raz,string ncirco,string ndue):felino(diet,anac,lnac,raz,ncirco){
+    Nombredue=ndue;
+}
+void mamifero::imprimeDieta(){
+    system("cls");
+        cout<<"la dieta del felino consiste en: "<<dieta<<endl;
+}
+void mamifero::imprimenac(){
+    system("cls");
+    cout<<"el felino nacio el "<<Anacimiento<<" en "<<Lnacimiento<<endl;
+}
+void mamifero::imprimeRaza(){
+    system("cls");
+    cout<<"la raza del felino es: "<<raza<<endl;
+}
+void felino::CambiaCirco(){
+    system("cls");
+    cout<<"cual es el nombre del nuevo circo?"<<endl;
+    cin>>NombreCirco;
+}
+void gatodomestico::CambiaNombre(){
+    system("cls");
+    cout<<"cual es el nombre del nuevo duenyo?"<<endl;
+    cin>>Nombredue;
+}
+void sumaraza(){
+    ostringstream suma;
+    string s1="ragdoll";
+    string s2="leon";
+    system("cls");
+    suma<<s1<<s2;
+    string s=suma.str();
+    cout<<s<<endl;
+}
+int main(){
+    int opc,c,b;
+    gatodomestico gato("croquetas",2015,"guadalajara","ragdoll","null","Ramon");
+    felino leon("cerdo",2011,"tailandia","leon","ringling bros");
+    while(opc!=7){
+    cout<<"que opcion decea realizar? "<<endl;
+    cout<<"1.-imprime dieta."<<endl<<"2.-imprime anyo y lugar de nacimiento."<<endl<<"3.-imprimir raza."<<endl;
+    cout<<"4.- cambiar el nombre del duenyo. "<<endl<<"5.-cambiar cambier nombre del circo."<<endl<<"6.-operador sobrecargado."<<endl;
+    cout<<"7.- salir."<<endl;
+    cin>>opc;
+    switch(opc){
+        case(1):
+        cout<<"de cual felino quiere ver los datos?"<<endl<<"1.- gato domestico"<<endl<<"2.-estrella de circo"<<endl;
+        cin>>c;
+        if(c=1){
+            gato.imprimeDieta();
+            }
+        if(c=2){
+            leon.imprimeDieta();
+            }
+        else{
+            cout<<"opcion no valida"<<endl;
+            }
+            break;
+        case(2):
+        cout<<"de cual felino quiere ver los datos?"<<endl<<"1.- gato domestico"<<endl<<"2.-estrella de circo"<<endl;
+        cin>>c;
+        if(c=1){
+            gato.imprimenac();
+        }
+        if(c=2){
+            leon.imprimenac();
+        }
+        else{
+            cout<<"opcion no valida"<<endl;
+        }
+            break;
+        case(3):
+        cout<<"de cual felino quiere ver los datos?"<<endl<<"1.- gato domestico"<<endl<<"2.-estrella de circo"<<endl;
+        cin>>c;
+        if(c=1){
+            gato.imprimeRaza();
+        }
+        if(c=2){
+            leon.imprimeRaza();
+        }
+        else{
+            cout<<"opcion no valida"<<endl;
+            }
+            break;
+        case(4):
+            gato.CambiaNombre();
+            break;
+        case(5):
+            leon.CambiaCirco();
+            break;
+        case(6):
+             sumaraza();
+            break;
+        default:
+            cout<<"la opcion no es valida"<<endl;
+            break;
+    }
+    }
+}
